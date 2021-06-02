@@ -1,97 +1,101 @@
 @page "/poetry"
-@using BlazorApp.Shared 
+@using BlazorApp.Shared
 @inject HttpClient Http
-<h1>Is worst poetry worst?</h1>
-<div class="row p-3 m-3">
-    <div class="col-sm p-3 rounded shadow mr-3">
-        <div class="p-3 rounded shadow mb-3">
-            <input @bind="author" placeholder="Author"/>
-            <input @bind="title" placeholder="Word in Title"/>
-            <button class="btn btn-primary" @onclick="IncrementCount">Find</button> 
-        </div>
-        
-        @if(poetry == null)
-        {
-            <h2>Loading...</h2>
-        }else
-        {
-            <div>
+<h1 class="text-center p-3">Is the worst poetry really the worst?</h1>
+
+@(Http.GetFromJsonAsync<string>("/api/PoetResult"))
+
+    <div class="row p-3 m-3">
+        <div class="col-sm p-3 rounded shadow mr-3">
+            <div class="p-3 rounded shadow mb-3">
+                <input @bind="author" placeholder="Author" />
+                <input @bind="title" placeholder="Word in Title" />
+                <button class="btn btn-primary" @onclick="IncrementCount">Find</button>
+            </div>
+
+            @if (poetry == null)
+            {
+                <h2>Loading...</h2>
+            }
+            else
+            {
                 <div>
-                    <h3>@poetry[pos].Title</h3>
-                    <h4>@poetry[pos].Author</h4>
-                    <p>
-                        @foreach (var line in poetry[pos].lines)
-                        {
+                    <div>
+                        <h3>@poetry[pos].Title</h3>
+                        <h4>@poetry[pos].Author</h4>
+                        <p>
+                            @foreach (var line in poetry[pos].lines)
+                            {
                             <p class="p-0 m-0">
                                 @line
                             </p>
                         }
-                    </p>
-                </div>
-            </div>
-        }
-    </div>
-    <div class="col-sm p-3 rounded shadow">
-        <div class="p-3 rounded shadow mb-3">
-            <select @bind="number">
-                <option>Vogon</option>
-                <option>Paula Nancy Millstone Jennings</option>
-                <option>Grunthos the Flatulent</option>
-            </select>
-            <button class="btn btn-outline-secondary" disabled>Select one</button>
+                            </p>
+                        </div>
+                    </div>
+                }
         </div>
-        @if(number != "")
-        {
-            @number
-            <pre>
+        <div class="col-sm p-3 rounded shadow">
+            <div class="p-3 rounded shadow mb-3">
+                <select @bind="number">
+                    <option>Vogon</option>
+                    <option>Paula Nancy Millstone Jennings</option>
+                    <option>Grunthos the Flatulent</option>
+                </select>
+                <button class="btn btn-outline-secondary" disabled>Select one</button>
+            </div>
+            @if (number != "")
+            {
+                @number
+                <pre>
 @((from s in FictionPoetry where s.Key.Equals(number) select s).FirstOrDefault().Value)
             </pre>
-        }
+            }
+        </div>
     </div>
-</div>
 
 
-@code 
+    @code
 {
-    Random rn = new Random();
-    private Poet[] poetry;
-    private int pos;
-    private string author;
-    private string title;
-    private string number = "";
-    private string output = "";
-    private Dictionary<string,string> FictionPoetry;
+        Random rn = new Random();
+        private Poet[] poetry;
+        private int pos;
+        private string author;
+        private string title;
+        private string number = "";
+        private string output = "";
+        private Dictionary<string, string> FictionPoetry;
 
-    private async Task IncrementCount()
-    {
-        string Url = $"https://poetrydb.org/author,title/{author};{title}";
-        try
+        private async Task IncrementCount()
         {
-            poetry = await Http.GetFromJsonAsync<Poet[]>(Url);
-            Console.WriteLine("done");
+            string Url = $"https://poetrydb.org/author,title/{author};{title}";
+            try
+            {
+                poetry = await Http.GetFromJsonAsync<Poet[]>(Url);
+                Console.WriteLine("done");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            pos = rn.Next(poetry.Length);
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.ToString());
-        }
-        pos = rn.Next(poetry.Length);
-    }
 
-    protected override async Task OnInitializedAsync()
-    {
-        FictionPoetry = new Dictionary<string,string>();
-        FictionPoetry.Add("Vogon", "Oh freddled gruntbuggly,\nThy micturations are to me,\nAs plurdled gabbleblotchits, in midsummer morning\nOn a lurgid bee,\nThat mordiously hath blurted out,\nIts earted jurtles, grumbling\nInto a rancid festering confectious organ squealer.\nNow the jurpling slayjid agrocrustles,\nAre slurping hagrilly up the axlegrurts,\nAnd living glupules frart and stipulate,\nLike jowling meated liverslime,\nGroop, I implore thee, my foonting turlingdromes,\nAnd hooptiously drangle me,\nWith crinkly bindlewurdles,mashurbitries.\nOr else I shall rend thee in the gobberwarts with my blurglecruncheon,\nSee if I don't!\n");
-        FictionPoetry.Add("Paula Nancy Millstone Jennings", "The dead swans lay in the stagnant pool.\nThey lay.They rotted.They turned\nAround occasionally.\nBits of flesh dropped off them from\nTime to time.:And sank into the pool's mire.\nThey also smelt a great deal.");
-        FictionPoetry.Add("Grunthos the Flatulent", "Relax mind.\nRelax body.\nRelax bowels.\nRelax.\nDo not fall over.\nYou are a cloud.\nYou are raining.\nDo not rain.\nWhile train.\nIs standing at a station.\nMove with the wind.\nApologise where necessary.");
-        try
+        protected override async Task OnInitializedAsync()
         {
-            poetry = await Http.GetFromJsonAsync<Poet[]>("https://poetrydb.org/author,title/Shakespeare;Sonnet");
+            FictionPoetry = new Dictionary<string, string>();
+            FictionPoetry.Add("Vogon", "Oh freddled gruntbuggly,\nThy micturations are to me,\nAs plurdled gabbleblotchits, in midsummer morning\nOn a lurgid bee,\nThat mordiously hath blurted out,\nIts earted jurtles, grumbling\nInto a rancid festering confectious organ squealer.\nNow the jurpling slayjid agrocrustles,\nAre slurping hagrilly up the axlegrurts,\nAnd living glupules frart and stipulate,\nLike jowling meated liverslime,\nGroop, I implore thee, my foonting turlingdromes,\nAnd hooptiously drangle me,\nWith crinkly bindlewurdles,mashurbitries.\nOr else I shall rend thee in the gobberwarts with my blurglecruncheon,\nSee if I don't!\n");
+            FictionPoetry.Add("Paula Nancy Millstone Jennings", "The dead swans lay in the stagnant pool.\nThey lay.They rotted.They turned\nAround occasionally.\nBits of flesh dropped off them from\nTime to time.:And sank into the pool's mire.\nThey also smelt a great deal.");
+            FictionPoetry.Add("Grunthos the Flatulent", "Relax mind.\nRelax body.\nRelax bowels.\nRelax.\nDo not fall over.\nYou are a cloud.\nYou are raining.\nDo not rain.\nWhile train.\nIs standing at a station.\nMove with the wind.\nApologise where necessary.");
+            try
+            {
+                poetry = await Http.GetFromJsonAsync<Poet[]>("https://poetrydb.org/author,title/Shakespeare;Sonnet");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            pos = rn.Next(poetry.Length);
+            output = "";
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.ToString());
-        }
-        pos = rn.Next(poetry.Length);
-        output = "";
     }
-}
