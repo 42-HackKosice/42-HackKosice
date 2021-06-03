@@ -94,30 +94,39 @@
         }
     </div>
 </div>
-
-<div class="container">
-    <h2 class="text-center">Comparison summary</h2>
-    <div class="row">
-        <p class="col-sm text-right">@left.Split(";")[0]</p>
-        <h3 class="col-sm text-center">Sentiment</h3>
-        <p class="col-sm text-left">@right.Split(";")[0]</p>
+@if (rightpoem != "" && poetry != null)
+{
+    <div class="container rounded shadow p-0">
+        <h2 class="text-center">Comparison summary</h2>
+        <div class="row">
+            <p class="col-sm text-right">@left.Split(";")[0]</p>
+            <h3 class="col-sm text-center">Sentiment</h3>
+            <p class="col-sm text-left">@right.Split(";")[0]</p>
+        </div>
+        <div class="row">
+            <p class="col-sm text-right">@left.Split(";")[1]</p>
+            <h3 class="col-sm text-center">Key Words</h3>
+            <p class="col-sm text-left">@right.Split(";")[1]</p>
+        </div>
+        <div class="row">
+            <p class="col-sm text-right">@left.Split(";")[2]</p>
+            <h3 class="col-sm text-center">Usage of different words</h3>
+            <p class="col-sm text-left">@right.Split(";")[2]</p>
+        </div>
+        <div class="row">
+            <p class="col-sm text-right">@left.Split(";")[3]</p>
+            <h3 class="col-sm text-center">Usage of alpha</h3>
+            <p class="col-sm text-left">@right.Split(";")[3]</p>
+        </div>
     </div>
-    <div class="row">
-        <p class="col-sm text-right">@left.Split(";")[1]</p>
-        <h3 class="col-sm text-center">Key Words</h3>
-        <p class="col-sm text-left">@right.Split(";")[1]</p>
+}
+else
+{
+    <div class="container rounded shadow m-3 p-0">
+        <h2 class="text-center">Comparison summary</h2>
+        <h1 class="text-center">Select for comparison </h1>
     </div>
-    <div class="row">
-        <p class="col-sm text-right">@left.Split(";")[2]</p>
-        <h3 class="col-sm text-center">Usage of different words</h3>
-        <p class="col-sm text-left">@right.Split(";")[2]</p>
-    </div>
-    <div class="row">
-        <p class="col-sm text-right">@left.Split(";")[3]</p>
-        <h3 class="col-sm text-center">Usage of alpha</h3>
-        <p class="col-sm text-left">@right.Split(";")[3]</p>
-    </div>
-</div>
+}
 
 
 @code
