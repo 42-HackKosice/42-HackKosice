@@ -154,13 +154,15 @@ app {
     app {
         flex-direction: row;
     }
-
+    /*
     .sidebar {
         width: 250px;
         height: 100vh;
         position: sticky;
         top: 0;
     }
+
+    */
 
     .main .top-row {
         position: sticky;
@@ -175,4 +177,12 @@ app {
         /* Never collapse the sidebar for wide screens */
         display: block;
     }
+}
+
+.shadow-gray {
+    border-radius: 15px;
+    background: #d0cece;
+    box-shadow: 9px 9px 18px #bdbbbb, -9px -9px 18px #e3e1e1;
+    border: 0px solid;
+    width: 200px
 }

@@ -1,12 +1,15 @@
 ﻿@inherits LayoutComponentBase
+<div style="height: 100vh; width: 100%; background-color: #e0e0e0" class="row m-0">
+    <div class="col-sm-9 d-flex justify-content-center" style="background-image:url(/img/Seizomat.png);background-size:cover; background-position:center">
+        <div class="main p-3 rounded m-5 shadow" style="background-color:white;">
 
-<div class="sidebar">
-    <NavMenu />
-</div>
-
-<div class="main">
-
-    <div class="w-100 h-100" style="padding:0px;margin:0">
-        @Body
+            <div class="w-100 h-100 rounded overflow-auto" style="padding:0px;margin:0">
+                @Body
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-sm-3 p-0" style="">
+        <NavMenu />
     </div>
 </div>
