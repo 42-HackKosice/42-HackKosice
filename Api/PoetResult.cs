@@ -37,7 +37,7 @@ namespace BlazorApp.Api
 
                 var topic = client.ExtractKeyPhrases(text);
                 foreach (string phrase in topic.Value)
-                    output += $"{phrase},";
+                    output += $"{phrase}, ";
                 output.Remove(output.Length-1);
                 output += ";";
 
