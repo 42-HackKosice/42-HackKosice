@@ -74,7 +74,7 @@
     private async Task TextAnalysis()
     {
         Console.WriteLine(number);
-        right = await Http.GetStringAsync($"http://localhost:7071/api/PoetResult?text={FictionPoetry[number].Replace("\n"," ")}");
+        right = await Http.GetStringAsync($"/api/PoetResult?text={FictionPoetry[number].Replace("\n"," ")}");
         Console.WriteLine(number);
     }
 
@@ -109,8 +109,8 @@
         }
         pos = rn.Next(poetry.Length);
         output = "";
-        string helper = $"http://localhost:7071/api/PoetResult?text={String.Join('\n',poetry[pos].lines).Replace("\n"," ")}";
+        string helper = $"/api/PoetResult?text={String.Join('\n',poetry[pos].lines).Replace("\n"," ")}";
         left = await Http.GetStringAsync(helper);
-        right = await Http.GetStringAsync($"http://localhost:7071/api/PoetResult?text={FictionPoetry[number].Replace("\n", " ")}");
+        right = await Http.GetStringAsync($"/api/PoetResult?text={FictionPoetry[number].Replace("\n", " ")}");
     }
 }

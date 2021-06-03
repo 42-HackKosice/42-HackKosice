@@ -29,8 +29,6 @@ namespace BlazorApp.Api
 
             string text = req.Query["text"];
             string output = "";
-            Console.WriteLine(text);
-            Console.WriteLine(text.Replace("\n", " "));
             if (text != null)
             {
                 text = text.Replace("\n"," ").Replace(",,",",");
