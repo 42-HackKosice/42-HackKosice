@@ -184,5 +184,9 @@ app {
     background: #d0cece;
     box-shadow: 9px 9px 18px #bdbbbb, -9px -9px 18px #e3e1e1;
     border: 0px solid;
-    width: 200px
+    width: 230px
+}
+ul li a{
+    color: #3B3838;
+    font-size:1.2em
 }
