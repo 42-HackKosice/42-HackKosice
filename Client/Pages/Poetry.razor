@@ -3,7 +3,6 @@
 @inject HttpClient Http
 
 <h1 class="text-center p-3">Is the worst poetry really the worst?</h1>
-<h1>Hello</h1>
 <div class="row p-3 m-3">
     <div class="col-sm p-3 rounded shadow mr-3">
         <div class="p-3 rounded shadow mb-3">
@@ -60,33 +59,48 @@
                 <option>Paula Nancy Millstone Jennings</option>
                 <option>Grunthos the Flatulent</option>
             </select>
-            <button class="btn btn-primary" @onclick="SelectWorst">Select one</button>
+            <button class="btn btn-primary" @onclick="SelectWorst">Select</button>
         </div>
         @if (rightpoem != "")
         {
-            @rightpoem
-            <pre>
-@FictionPoetry[rightpoem]
-            </pre>
-            <table>
+            <h4>
+                @rightpoem
+            </h4>
+
+            @foreach (var line in FictionPoetry[rightpoem].Split("\n"))
+            {
+                <p class="p-0 m-0">
+                    @line
+                </p>
+            }
+            <table class="table">
                 <tr>
-                    <td>Sentiment</td>
+                    <th class="mr-3" scope="row">Sentiment</th>
                     <td>@right.Split(";")[0]</td>
                 </tr>
                 <tr>
-                    <td>KeyWords</td>
+                    <th class="mr-3" scope="row">KeyWords</th>
                     <td>@right.Split(";")[1]</td>
                 </tr>
                 <tr>
-                    <td>Usage of different words</td>
+                    <th class="mr-3" scope="row">Usage of different words</th>
                     <td>@right.Split(";")[2]</td>
                 </tr>
                 <tr>
-                    <td>Usage of alphabet</td>
+                    <th class="mr-3" scope="row">Usage of alphabet</th>
                     <td>@right.Split(";")[3]</td>
                 </tr>
             </table>
         }
+    </div>
+</div>
+
+<div class="container">
+    <h2 class="text-center">Comparison summary</h2>
+    <div class="row">
+        <p class="col-sm text-right">@left.Split(";")[0]</p>
+        <h3 class="col-sm text-center">Sentiment</h3>
+        <p class="col-sm text-left">@right.Split(";")[0]</p>
     </div>
 </div>
 
