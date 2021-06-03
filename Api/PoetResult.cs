@@ -35,11 +35,13 @@ namespace BlazorApp.Api
                 DocumentSentiment documentSentiment = client.AnalyzeSentiment(text);
                 output += documentSentiment.Sentiment + ";";
 
+
                 var topic = client.ExtractKeyPhrases(text);
                 foreach (string phrase in topic.Value)
                     output += $"{phrase}, ";
                 output.Remove(output.Length-1);
                 output += ";";
+
 
                 text = text.Replace(".","").Replace(",","").Replace("!", "").Replace("?", "").Replace("'", "");
                 text = text.ToLower();
@@ -52,6 +54,7 @@ namespace BlazorApp.Api
                         roznorodostSlov.Add(item, 1);
                 }
                 output += roznorodostSlov.Count / (text.Split(" ").Length * 1.0) * 100.0 + "%;";
+
 
                 text = text.Replace(" ", "");
                 Dictionary<char, int> kvalita = new Dictionary<char, int>();

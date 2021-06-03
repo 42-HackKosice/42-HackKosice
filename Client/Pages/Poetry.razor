@@ -30,7 +30,25 @@
                             </p>
                         }
                     </p>
-                    <p>@left</p>
+                    <table>
+                        <tr>
+                            <td>Sentiment</td>
+                            <td>@left.Split(";")[0]</td>
+                        </tr>
+                        <tr>
+                            <td>KeyWords</td>
+                            <td>@left.Split(";")[1]</td>
+                        </tr>
+                        <tr>
+                            <td>Usage of different words</td>
+                            <td>@left.Split(";")[2]</td>
+                        </tr>
+                        <tr>
+                            <td>Usage of alphabet</td>
+                            <td>@left.Split(";")[3]</td>
+                        </tr>
+                    </table>
+
                 </div>
             </div>
         }
@@ -44,13 +62,30 @@
             </select>
             <button class="btn btn-primary" @onclick="SelectWorst">Select one</button>
         </div>
-        @if (number != "")
+        @if (rightpoem != "")
         {
-            @number
+            @rightpoem
             <pre>
-@FictionPoetry[number]
-        </pre>
-        <p> @right </p>
+@FictionPoetry[rightpoem]
+            </pre>
+            <table>
+                <tr>
+                    <td>Sentiment</td>
+                    <td>@right.Split(";")[0]</td>
+                </tr>
+                <tr>
+                    <td>KeyWords</td>
+                    <td>@right.Split(";")[1]</td>
+                </tr>
+                <tr>
+                    <td>Usage of different words</td>
+                    <td>@right.Split(";")[2]</td>
+                </tr>
+                <tr>
+                    <td>Usage of alphabet</td>
+                    <td>@right.Split(";")[3]</td>
+                </tr>
+            </table>
         }
     </div>
 </div>
@@ -67,6 +102,7 @@
     private string output = "";
     private string left = "";
     private string right = "";
+    private string rightpoem = "";
 
     private Dictionary<string, string> FictionPoetry;
 
@@ -95,6 +131,7 @@
     private async Task SelectWorst()
     {
         right = await Http.GetStringAsync($"/api/PoetResult?text={FictionPoetry[number].Replace("\n", " ")}");
+        rightpoem = number;
     }
 
     protected override async Task OnInitializedAsync()
