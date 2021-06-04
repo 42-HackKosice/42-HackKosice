@@ -1,24 +1,42 @@
-# Blazor Starter Application
+# 5B- Enjoy Free Open Challenge
 
-This template contains an example [Blazor WebAssembly](https://docs.microsoft.com/aspnet/core/blazor/?view=aspnetcore-3.1#blazor-webassembly) client application, a C# [Azure Functions](https://docs.microsoft.com/azure/azure-functions/functions-overview) and a C# class library with shared code.
+![InputImg](https://user-images.githubusercontent.com/41269745/120859169-1beffe00-c584-11eb-9ea4-a1f3b588387b.png)  
 
-## Getting Started
+## Team
 
-Create a repository from the [GitHub template](https://docs.github.com/en/enterprise/2.22/user/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template) and then clone it locally to your machine.
+42
 
-Once you clone the project, open the solution in [Visual Studio Code](https://code.visualstudio.com/) and follow these steps:
+### Team members
 
-- In the **API** folder, copy `local.settings.example.json` to `local.settings.json`
-- Press **F5** to launch both the client application and the Functions API app
+- Breznický Timotej, SPŠE-PO, 3rd grade
+- Mazúr Matej, SPŠE-PO, 3rd grade
+- Poľanský Marko, SPŠE-PO, 3rd grade
 
-_Note: If you're using the Azure Functions CLI tools, refer to [the documentation](https://docs.microsoft.com/azure/azure-functions/functions-run-local?tabs=windows%2Ccsharp%2Cbash) on how to enable CORS._
+[SPŠE-PO](http://spse-po.sk) = High school of electrical engineering in Prešov, Slovakia  
 
-## Template Structure
+## Description
 
-- **Client**: The Blazor WebAssembly sample application
-- **API**: A C# Azure Functions API, which the Blazor application will call
-- **Shared**: A C# class library with a shared data model between the Blazor and Functions application
+Our team is called 42.   
+Why?  
+42
 
-## Deploy to Azure Static Web Apps
+If you have red the book: The Hitchhiker's Guide to the Galaxy from Douglas Adams.  
+In this project we used the power of internet and APIs to create the fully customisable Hitchhinker's Guide.
 
-This application can be deployed to [Azure Static Web Apps](https://docs.microsoft.com/azure/static-web-apps), to learn how, check out [our quickstart guide](https://aka.ms/blazor-swa/quickstart).
+# Video presentation
+
+Presentation and features of prototype are shown in this video(image/link):
+[![Presentation](https://user-images.githubusercontent.com/41269745/120858996-e0edca80-c583-11eb-99f0-23669245be43.png)](https://www.youtube.com/watch?v=n6R4DTWz2S8)  
+
+# Challenges and accomplishments
+Our challenge was to create something funny and useful at the same time.  
+And we were inspired by the book.  
+We accomplished to create an app that uses APIs to get an poet from popular authors. And than compare it with the worst Poetry by official Hitchinker's guide to the galaxy.  
+For those who like to see beautifull things like rainbow, you can hunt it and use our website which tells you in what time you can see the rainbow.
+
+# Next Steps
+* [ ] Add more Hitchinker related data
+
+## License
+
+[MIT License](https://github.com/42-HackKosice/2B-ModernWorkspace/blob/main/LICENSE)
