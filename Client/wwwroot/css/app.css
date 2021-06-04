@@ -195,3 +195,7 @@ ul li a{
 .bg-white{
     background-color:rgba(255,255,255,0.7)
 }
+
+a:hover .imgSpeci{
+    filter:grayscale(100%)
+}
