@@ -1,136 +1,137 @@
 @page "/poetry"
 @using BlazorApp.Shared
 @inject HttpClient Http
+<div id="42" class="position-relative p-3 w-100 h-100" style="background-image: url(https://th.bing.com/th/id/R510a2f2eca24ae33b67319087300dcd5?rik=J9DaMp29RBzEfA&riu=http%3a%2f%2fwonderfulengineering.com%2fwp-content%2fuploads%2f2014%2f04%2fspace-wallpapers-4.jpg&ehk=A4s%2fLXKGGONkYU20Bxlt27btX0Ob7YbRQZnFbDeAyWQ%3d&risl=&pid=ImgRaw); background-attachment: fixed; background-position: center; background-size: cover">
+    <h1 class="text-center p-3 bg-white rounded shadow">Is the worst poetry really the worst?</h1>
+    <div class="row p-3 m-3">
+        <div class="col-sm p-3 rounded shadow mr-3 bg-white">
+            <div class="p-3 rounded shadow mb-3">
+                <input @bind="author" placeholder="Author" />
+                <input @bind="title" placeholder="Word in Title" />
+                <button class="btn btn-primary" @onclick="IncrementCount">Find</button>
+            </div>
 
-<h1 class="text-center p-3">Is the worst poetry really the worst?</h1>
-<div class="row p-3 m-3">
-    <div class="col-sm p-3 rounded shadow mr-3">
-        <div class="p-3 rounded shadow mb-3">
-            <input @bind="author" placeholder="Author" />
-            <input @bind="title" placeholder="Word in Title" />
-            <button class="btn btn-primary" @onclick="IncrementCount">Find</button>
-        </div>
-
-        @if (poetry == null)
-        {
-            <h2>Loading...</h2>
-        }
-        else
-        {
-            <div>
+            @if (poetry == null)
+            {
+                <h2>Loading...</h2>
+            }
+            else
+            {
                 <div>
-                    <h3>@poetry[pos].Title</h3>
-                    <h4>@poetry[pos].Author</h4>
-                    <p>
-                        @foreach (var line in poetry[pos].lines)
-                        {
+                    <div>
+                        <h3>@poetry[pos].Title</h3>
+                        <h4>@poetry[pos].Author</h4>
+                        <p>
+                            @foreach (var line in poetry[pos].lines)
+                            {
                             <p class="p-0 m-0">
                                 @line
                             </p>
                         }
-                    </p>
-                    <table class="table d-none">
-                        <tr>
-                            <th class="mr-3" scope="row">Sentiment</th>
-                            <td>@left.Split(";")[0]</td>
-                        </tr>
-                        <tr>
-                            <th class="mr-3" scope="row">KeyWords</th>
-                            <td>@left.Split(";")[1]</td>
-                        </tr>
-                        <tr>
-                            <th class="mr-3" scope="row">Usage of different words</th>
-                            <td>@left.Split(";")[2]</td>
-                        </tr>
-                        <tr>
-                            <th class="mr-3" scope="row">Usage of alphabet</th>
-                            <td>@left.Split(";")[3]</td>
-                        </tr>
-                    </table>
+                            </p>
+                            <table class="table d-none">
+                                <tr>
+                                    <th class="mr-3" scope="row">Sentiment</th>
+                                    <td>@left.Split(";")[0]</td>
+                                </tr>
+                                <tr>
+                                    <th class="mr-3" scope="row">KeyWords</th>
+                                    <td>@left.Split(";")[1]</td>
+                                </tr>
+                                <tr>
+                                    <th class="mr-3" scope="row">Usage of different words</th>
+                                    <td>@left.Split(";")[2]</td>
+                                </tr>
+                                <tr>
+                                    <th class="mr-3" scope="row">Usage of alphabet</th>
+                                    <td>@left.Split(";")[3]</td>
+                                </tr>
+                            </table>
 
-                </div>
+                        </div>
+                    </div>
+                }
+        </div>
+        <div class="col-sm p-3 rounded shadow bg-white">
+            <div class="p-3 rounded shadow mb-3">
+                <select @bind="number">
+                    <option>Vogon</option>
+                    <option>Paula Nancy Millstone Jennings</option>
+                    <option>Grunthos the Flatulent</option>
+                </select>
+                <button class="btn btn-primary" @onclick="SelectWorst">Select</button>
             </div>
-        }
-    </div>
-    <div class="col-sm p-3 rounded shadow">
-        <div class="p-3 rounded shadow mb-3">
-            <select @bind="number">
-                <option>Vogon</option>
-                <option>Paula Nancy Millstone Jennings</option>
-                <option>Grunthos the Flatulent</option>
-            </select>
-            <button class="btn btn-primary" @onclick="SelectWorst">Select</button>
-        </div>
-        @if (rightpoem != "")
-        {
-            <h4>
-                @rightpoem
-            </h4>
-
-            @foreach (var line in FictionPoetry[rightpoem].Split("\n"))
+            @if (rightpoem != "")
             {
-                <p class="p-0 m-0">
-                    @line
-                </p>
+                <h4>
+                    @rightpoem
+                </h4>
+
+                @foreach (var line in FictionPoetry[rightpoem].Split("\n"))
+                {
+                    <p class="p-0 m-0">
+                        @line
+                    </p>
+                }
+                <table class="table d-none">
+                    <tr>
+                        <th class="mr-3" scope="row">Sentiment</th>
+                        <td>@right.Split(";")[0]</td>
+                    </tr>
+                    <tr>
+                        <th class="mr-3" scope="row">KeyWords</th>
+                        <td>@right.Split(";")[1]</td>
+                    </tr>
+                    <tr>
+                        <th class="mr-3" scope="row">Usage of different words</th>
+                        <td>@right.Split(";")[2]</td>
+                    </tr>
+                    <tr>
+                        <th class="mr-3" scope="row">Usage of alphabet</th>
+                        <td>@right.Split(";")[3]</td>
+                    </tr>
+                </table>
             }
-            <table class="table d-none">
-                <tr>
-                    <th class="mr-3" scope="row">Sentiment</th>
-                    <td>@right.Split(";")[0]</td>
-                </tr>
-                <tr>
-                    <th class="mr-3" scope="row">KeyWords</th>
-                    <td>@right.Split(";")[1]</td>
-                </tr>
-                <tr>
-                    <th class="mr-3" scope="row">Usage of different words</th>
-                    <td>@right.Split(";")[2]</td>
-                </tr>
-                <tr>
-                    <th class="mr-3" scope="row">Usage of alphabet</th>
-                    <td>@right.Split(";")[3]</td>
-                </tr>
-            </table>
-        }
+        </div>
     </div>
+    @if (rightpoem != "" && poetry != null)
+    {
+        <div class="container rounded shadow p-3 bg-white">
+            <h2 class="text-center p-3">Comparison summary</h2>
+            <hr />
+            <div class="row">
+                <p class="col-sm text-right">@left.Split(";")[0]</p>
+                <h3 class="col-sm text-center">Sentiment</h3>
+                <p class="col-sm text-left">@right.Split(";")[0]</p>
+            </div>
+            <hr />
+            <div class="row">
+                <p class="col-sm text-right">@left.Split(";")[1]</p>
+                <h3 class="col-sm text-center">Key Words</h3>
+                <p class="col-sm text-left">@right.Split(";")[1]</p>
+            </div>
+            <hr />
+            <div class="row">
+                <p class="col-sm text-right">@Math.Round(Convert.ToDouble(left.Split(";")[2].Replace("%", "")), 2)%</p>
+                <h3 class="col-sm text-center">Usage of different words</h3>
+                <p class="col-sm text-left">@Math.Round(Convert.ToDouble(right.Split(";")[2].Replace("%", "")), 2)%</p>
+            </div>
+            <hr />
+            <div class="row">
+                <p class="col-sm text-right">@Math.Round(Convert.ToDouble(left.Split(";")[3].Replace("%", "")), 2)%</p>
+                <h3 class="col-sm text-center">Usage of alphabet</h3>
+                <p class="col-sm text-left">@Math.Round(Convert.ToDouble(right.Split(";")[3].Replace("%", "")), 2)%</p>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="container rounded shadow p-3 bg-white">
+            <h2 class="text-center p-3">Comparison summary</h2>
+            <h1 class="text-center">Select for comparison </h1>
+        </div>
+    }
 </div>
-@if (rightpoem != "" && poetry != null)
-{
-    <div class="container rounded shadow p-3">
-        <h2 class="text-center p-3">Comparison summary</h2>
-        <hr />
-        <div class="row">
-            <p class="col-sm text-right">@left.Split(";")[0]</p>
-            <h3 class="col-sm text-center">Sentiment</h3>
-            <p class="col-sm text-left">@right.Split(";")[0]</p>
-        </div>
-        <hr />
-        <div class="row">
-            <p class="col-sm text-right">@left.Split(";")[1]</p>
-            <h3 class="col-sm text-center">Key Words</h3>
-            <p class="col-sm text-left">@right.Split(";")[1]</p>
-        </div>
-        <hr />
-        <div class="row">
-            <p class="col-sm text-right">@Math.Round(Convert.ToDouble(left.Split(";")[2].Replace("%","")), 2)%</p>
-            <h3 class="col-sm text-center">Usage of different words</h3>
-            <p class="col-sm text-left">@Math.Round(Convert.ToDouble(right.Split(";")[2].Replace("%", "")), 2)%</p>
-        </div>
-        <hr />
-        <div class="row">
-            <p class="col-sm text-right">@Math.Round(Convert.ToDouble(left.Split(";")[3].Replace("%", "")),2)%</p>
-            <h3 class="col-sm text-center">Usage of alphabet</h3>
-            <p class="col-sm text-left">@Math.Round(Convert.ToDouble(right.Split(";")[3].Replace("%", "")), 2)%</p>
-        </div>
-    </div>
-}
-else
-{
-    <div class="container rounded shadow p-3">
-        <h2 class="text-center p-3">Comparison summary</h2>
-        <h1 class="text-center">Select for comparison </h1>
-    </div>
-}
 
 
 @code
