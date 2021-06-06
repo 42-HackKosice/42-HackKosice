@@ -22,7 +22,7 @@ Why?
 
 If you have red the book: The Hitchhiker's Guide to the Galaxy from Douglas Adams.  
 In this project we used the power of internet and APIs to create the fully customisable Hitchhinker's Guide.  
-Link to website: [https://kind-wave-0b249f103.azurestaticapps.net/](https://kind-wave-0b249f103.azurestaticapps.net/)
+> Link to website: [https://kind-wave-0b249f103.azurestaticapps.net/](https://kind-wave-0b249f103.azurestaticapps.net/)
 
 # Video presentation
 
