@@ -1,4 +1,4 @@
-# 5B- Enjoy Free Open Challenge
+# 5B - 42 (Enjoy Open Challenge)
 
 [![InputImg](https://user-images.githubusercontent.com/41269745/120859169-1beffe00-c584-11eb-9ea4-a1f3b588387b.png)](https://kind-wave-0b249f103.azurestaticapps.net/)
 
